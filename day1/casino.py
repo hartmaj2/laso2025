@@ -1,20 +1,4 @@
 """
-Reimplementation of casino game but using queue instead of recursion
-"""
-
-from typing import Callable
-
-
-num_slots = 6
-start_config = tuple(num_slots * [1])
-
-# start_config = tuple([3,0,0])
-best_config = start_config
-
-prevs : dict[tuple,None|tuple] = {}
-prevs[start_config] = None
-
-"""
 Problem: https://youtu.be/YdpFPHFE60w?si=PmiYPguzid2Qjn2u&t=823
 (13:43)
 
@@ -30,6 +14,17 @@ Algoritmus:
 4.  zkus prohodit dve nasledujici prihrady
 
 """
+
+from typing import Callable
+
+num_slots = 6
+start_config = tuple(num_slots * [1])
+
+# start_config = tuple([3,0,0])
+best_config = start_config
+
+prevs : dict[tuple,None|tuple] = {}
+prevs[start_config] = None
 
 def print_info(slots: tuple):
     print(f"slots: {slots}, sum: {sum(slots)}")
