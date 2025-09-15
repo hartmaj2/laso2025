@@ -1,6 +1,7 @@
 """
 Problem: https://youtu.be/YdpFPHFE60w?si=PmiYPguzid2Qjn2u&t=823
 (13:43)
+(when last rule introduced 38:15)
 
 For every slot:
 - perform duplicate rule
