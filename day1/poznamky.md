@@ -140,3 +140,5 @@ Suppose we have a set $S$ that satisfies the property we look for i.e. it is a i
 We have two sets of vertices $S$ and $B = V \setminus S$. Since $S$ is an independent set, we know there is no edge $e$ s.t. both endpoints lie in $S$. Also, there is no edge s.t. both endpoints lie in $B$, since $S$ is a vertex cover.
 
 Thus we are looking for a partition of the graph into a bipartite graph.
+
+[Problem setting](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1925)
