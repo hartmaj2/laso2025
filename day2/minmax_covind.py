@@ -17,6 +17,8 @@ Algoritmus:
 """
 
 from typing import Optional
+from typing import TextIO
+import sys
 
 class Vertex:
 
@@ -55,17 +57,17 @@ class Graph:
         for vtx in self.vertices:
             print(f"{vtx}: {vtx.neighbors}")
 
-def parse_input(path : str) -> tuple[int,list[tuple[int,int]]]:
-    with open(path) as file:
-        num_vertices = int(file.readline())
-        num_edges = int(file.readline())
-        edges = []
-        for i in range(num_edges):
-            edges.append(tuple([int(x) for x in file.readline().split()]))
-        return num_vertices,edges
+def parse_input(stream : TextIO) -> tuple[int,list[tuple[int,int]]]:
+    
+    num_vertices = int(stream.readline())
+    num_edges = int(stream.readline())
+    edges = []
+    for i in range(num_edges):
+        edges.append(tuple([int(x) for x in stream.readline().split()]))
+    return num_vertices,edges
 
 
-def color_comp_w_colors(start_vtx : Vertex):
+def color_comp_w_colors(start_vtx : Vertex) -> bool:
     stack = [start_vtx]
     start_vtx.visited = True
     start_vtx.color = 0
@@ -73,38 +75,46 @@ def color_comp_w_colors(start_vtx : Vertex):
         vtx = stack.pop()
         for neigh in vtx.neighbors:
             if neigh.visited and neigh.color == vtx.color: 
-                raise RuntimeError("Impossible to color component using two colors")
+                return False
             if not neigh.visited:
                 if vtx.color is None: 
                     raise AssertionError("Current vertex does not have color")
                 neigh.color = 1 - vtx.color
                 neigh.visited = True
                 stack.append(neigh)
+    return True
 
-def alg(graph : Graph):
+def alg(graph : Graph) -> bool:
     for vtx in graph.vertices:
         if vtx.visited:
             continue
-        color_comp_w_colors(vtx)
+        if not color_comp_w_colors(vtx):
+            return False
+    return True
 
 def colorgroups(g : Graph) -> tuple[list[Vertex],list[Vertex]]:
     return [vtx for vtx in g.vertices if vtx.color == 0],[vtx for vtx in g.vertices if vtx.color == 1]
 
+cases = int(sys.stdin.readline())
+impos = "Impossible"
 
-vtx_n, edges = parse_input("graph3.txt")
+for case in range(cases):
+    print(f"Case #{case+1}: ",end="")
 
-g = Graph(vtx_n,edges)
+    vtx_n, edges = parse_input(sys.stdin)
 
-try:
-    alg(g)
+    g = Graph(vtx_n,edges)
+
+    if not alg(g):
+        print(impos)
+        continue
     group_a, group_b = colorgroups(g)
     if len(group_a) != len(group_b):
-        print("Impossible")
-    else:
-        print(len(group_a))
-        print(" ".join([str(vtx) for vtx in group_a]))
-except RuntimeError:
-    print("Impossible")
+        print(impos)
+        continue
+    print(len(group_a))
+    print(" ".join([str(vtx) for vtx in group_a]))
+
 
 
 
