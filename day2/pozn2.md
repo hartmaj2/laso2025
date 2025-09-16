@@ -32,7 +32,7 @@ Máme dvě možnosti:
 
 (a) použijeme Hornerovo schéma
 
-(b) vytvoříme si Vandermondtovu matici a vynásobíme s ní koeficienty
+(b) vytvoříme si Vandermondovu matici a vynásobíme s ní koeficienty
 
 ## Násobení polynomů pomocí jejich hodnotových reprezentací
 
@@ -47,3 +47,11 @@ Pozorování, hodnoty jednoznačně označují i výsledný polynom $P \cdot Q$ 
 Původních hodnot máme $m+1$ a $n+1$ takže vynásobením jich můžeme získat až $mn + m + n + 1$.
 
 Mějme polynom a jeho hodnotu $P(x)$, jak vypadá hodnota $P(-x)$?
+
+## Hlavní myšlenky FFT
+
+Postupujeme metodou rozděl a panuj.
+
+Převedeme problém vyhodnocení polynomu $P$ v bodech $1,\omega, \ldots \omega^{2^n}$ na vyhodnocení dvou pomocných polynomů v bodech $1,\omega^2, \omega^4, \ldots \omega^{2^n-1}$.
+
+Ukáže se, že z výsledných hodnot dokážeme z každé získat dvě původní, které jsou od sebe přesně na opačné straně jednotkové kružnice.
