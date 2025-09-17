@@ -1,4 +1,4 @@
-# Den 2 poznámky
+# Fast Fourier Transform
 
 ## Násobení čísel
 
@@ -52,6 +52,35 @@ Mějme polynom a jeho hodnotu $P(x)$, jak vypadá hodnota $P(-x)$?
 
 Postupujeme metodou rozděl a panuj.
 
-Převedeme problém vyhodnocení polynomu $P$ v bodech $1,\omega, \ldots \omega^{2^n}$ na vyhodnocení dvou pomocných polynomů v bodech $1,\omega^2, \omega^4, \ldots \omega^{2^n-1}$.
+Převedeme problém vyhodnocení polynomu $P$ v bodech $1,\omega, \ldots \omega^{2^n-1}$ na vyhodnocení dvou pomocných polynomů v bodech $1,\omega^2, \omega^4, \ldots \omega^{2^n-2}$.
 
 Ukáže se, že z výsledných hodnot dokážeme z každé získat dvě původní, které jsou od sebe přesně na opačné straně jednotkové kružnice.
+
+Jakým trikem se nám to povede? Máme-li polynom $P(x) = a_0 x^0 + a_1 x^1 + \cdots a_{2^n-1}x^{2^n-1}$. Tak ho rozdělíme na dva polynomy:
+
+Sudé mocniny: $S'(x) = a_0 x^0 + a_2 x^2 + \cdot + a_{2^n-2} x^{2^n-2}$.
+
+Liché mocniny: $L'(x) = a_1 x^1 + a_3 x^3 + \cdot + a_{2^n-1} x^{2^n-1}$.
+
+Dále můžeme z $L'$ vytknout $x$ a získat tak:
+
+ $L''(x) = a_1 x^0 + a_3 x^2 + \cdot + a_{2^n-1} x^{2^n-2}$.
+
+Všimněme si, že polynomy výše jsou jen vyhodnocením následujících polynomů v bodě $x^2$:
+
+
+ $S(x) = a_0 x^0 + a_2 x^1 + \cdot + a_{2^{n-1}-1} x^{2^{n-1}-1}$.
+
+ $L(x) = a_1 x^0 + a_3 x^1 + \cdot + a_{2^{n-1}-1} x^{2^{n-1}-1}$.
+
+ Tedy můžeme přepsat $P$ jako $P(x) = S(x^2) + x \cdot L(x^2)$.
+
+ Pokud tedy dostaneme například vyhodnocení $S$ a $L$ v bodech $1,\omega^4,\omega^8,\omega^{12}$, tak z nich dokážeme vytřískat vyhodnocení původního $P$ v bodech:
+
+ $1 \rightarrow \omega, \omega^8$
+
+ $\omega^4 \rightarrow \omega^2, \omega^{10}$
+
+ $\omega^8 \rightarrow \omega^4, \omega^{12}$
+
+ $\omega^{12} \rightarrow \omega^6, \omega^{14}$
