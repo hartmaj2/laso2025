@@ -27,7 +27,7 @@ Po useknutí hlavy připojené ke kořeni už nevyrosté nová kopie.
 ### Otázky
 
 Za jak dlouho hydru zlikvidujeme?
-Dokážeme hydru zlikvidovat i pokud si hydra vybere, kolik kopií
+Dokážeme hydru zlikvidovat i pokud si hydra vybere, kolik kopií si po useknutí hlavy vytvoří?
 
 ### Jak to analyzovat
 
