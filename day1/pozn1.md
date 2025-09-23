@@ -127,9 +127,9 @@ Zde už pro $n=6$ máme cyklus.
 
 Otázka je, zastaví se daná konfigurace, nebo se bude nekonečně cyklit?
 
-## Maximal indepset and min vertex cover
+## Maximum indepset and min vertex cover
 
-Problem: Given a graph $G$ find a set s.t. it is a maximal independent set of $G$ and also a minimal vertex cover of $G$ or output impossible if that does not exist.
+Problem: Given a graph $G$ find a set s.t. it is a maximum independent set of $G$ and also a minimum vertex cover of $G$ or output impossible if that does not exist.
 
 ### Analysis
 
